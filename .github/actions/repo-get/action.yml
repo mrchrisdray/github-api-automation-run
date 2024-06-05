@@ -23,7 +23,7 @@ runs:
         repo_name: ${{ inputs.repo-name }}
         owner_name: ${{ inputs.owner-name }}
       run: |
-        gh api /
+        gh api \
           --method GET \
           --include \
           --verbose \
