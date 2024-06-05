@@ -1,0 +1,27 @@
+name: "Create New Repo"
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository-name: 
+        description: "Name of the new repository to be created" 
+        required: true
+        default: "my-new-repo-test" 
+      repository_description: 
+        description: "Name of the new repository to be created" 
+        required: false
+        default: "Creation of new test repo using api calls in GitHub"
+ 
+jobs:
+  repo_test:
+   runs-on: ubuntu-latest
+   name: "Check Repo Existence" 
+   steps:
+    - name: Run Check out
+      uses: actions/checkout@v4
+    - uses: ./.github/actions/repos-get
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repo-name: ${{ github.event.inputs.repository-name }}
+        owner-name: ${{ github.repository_owner }}  
+

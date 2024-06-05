@@ -1,0 +1,32 @@
+name: "Repository Get"
+decsription: "Get the repository Details if they exist"
+
+inputs:
+ repo-name:
+   decsription: "Name of the repository to attempt to get"
+   required: true
+ owner-name:
+   decsription: "The repository owner"
+   required: true
+ token:
+  decsription: "The GitHub token to use. It must have enough privileges to make API calls"
+  required: true
+
+  runs:
+    using: composite
+    steps:
+      - name: Repo Get API calls"
+        id: repo_get_call
+        shell: bash
+        env:
+          GH_TOKEN: ${{ inputs.token }}
+          repo_name: ${{ inputs.repo-name }}
+          owner_name: ${{ inputs.owner-name }}
+        run: |
+          gh api /
+            --method GET \
+            --include \
+            --verbose \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/$owner_name/$repo_name
