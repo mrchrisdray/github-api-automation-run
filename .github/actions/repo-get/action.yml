@@ -29,4 +29,6 @@ runs:
           --verbose \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/$owner_name/$repo_name
+          /repos/$owner_name/$repo_name > data.json
+
+          jq '.[] |{message: .message}' data.json
