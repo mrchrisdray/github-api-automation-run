@@ -36,7 +36,7 @@ jobs:
         run: |
           # Add your tests here
           echo "Running tests..."
-          echo "Repo check output: ${{ env.REPO_CHECK_OUTPUT }}" 
+          echo "Repo check output: ${{ env.REPO_CHECK_STATUS }}" 
 
     # - id: create_repo
     #   uses: ./.github/actions/create-repo
