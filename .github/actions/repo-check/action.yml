@@ -49,6 +49,3 @@ outputs:
   repo_get_output:
     description: "The repository details"
     value: ${{ steps.set_output.outputs.repo_get_output }} 
-  response_status:
-    description: "The response status"
-    value: ${{ steps.set_output.outputs.response_status }} 
