@@ -23,6 +23,10 @@ runs:
       with:
         node-version: '20.x'
 
+    - name: Install dependencies
+      shell: bash
+      run: npm install @octokit/rest
+
     - name: Repo Get API calls"
       id: repo_get_call
       shell: bash
