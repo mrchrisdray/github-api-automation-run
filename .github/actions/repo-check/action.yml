@@ -43,9 +43,8 @@ runs:
       id: set_output
       run: |
         echo "repo_get_output=$(cat repo_get_output.json) >> GITHUB_OUTPUT" 
-      env:
-        REPO_CHECK_STATUS: ${{ steps.set_output.outputs.repo_get_output }}
+
 outputs:     
   repo_get_output:
-    description: "The repository details"
+    description: "The repository get response status code"
     value: ${{ steps.set_output.outputs.repo_get_output }} 

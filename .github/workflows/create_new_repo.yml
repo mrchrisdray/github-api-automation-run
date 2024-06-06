@@ -25,12 +25,8 @@ jobs:
         pat-token: ${{ secrets.API_PAT_TOKEN }}
         repo-name: ${{ github.event.inputs.repository-name }}
         owner-name: ${{ github.repository_owner }}
-      # Set output here
-    # - id: set_output
-    #   run: |
-    #     echo "::set-output name=REPO_CHECK_STATUS::$(./your-script.sh)"
    outputs:
-      REPO_CHECK_STATUS: ${{ steps.repo-check.outputs.env.REPO_CHECK_STATUS }}
+      REPO_CHECK_STATUS: ${{ steps.repo-check.outputs.repo_get_output }}
   # Test job
   test:
     needs: repo_test
