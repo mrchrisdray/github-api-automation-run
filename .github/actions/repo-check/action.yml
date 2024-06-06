@@ -29,7 +29,7 @@ runs:
         gh api \
           "repos/$owner_name/$repo_name" \
           -H "Accept: application/vnd.github.v3+json" 
-          -H "Authorization: $GH_TOKEN \
+          -H "Authorization: $GH_TOKEN" \
           --include \
           -X GET \
           -o repo_get_output.json
