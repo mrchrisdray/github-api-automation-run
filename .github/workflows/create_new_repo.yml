@@ -16,6 +16,8 @@ jobs:
   repo_test:
    runs-on: ubuntu-latest
    name: "Check Repo Existence" 
+   outputs:
+    repo_get_output: ${{ steps.repo-check.outputs.repo_get_output }}
    steps:
     - name: Run Check out
       uses: actions/checkout@v4
