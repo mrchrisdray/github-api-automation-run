@@ -35,17 +35,16 @@ runs:
           -o repo_get_output.json
         if [ $? -ne 0 ]; then
           echo " API call failed, but we are continuing execution..."
-          response_status=$(cat repo_get_output.json | jq -r '.status')
+          printf '{"response_status":"$?"}' > repo_get_output.json
+          response_status=$?
           echo $response_status
-          echo $response_status > response_status.txt
         fi  
           
     - name: Set output  
       shell: bash
       id: set_output
       run: |
-        echo "repo_get_output=$(cat repo_get_output.json) >> GITHUB_OUTPUT"
-        echo "response_status=$(cat response_status.txt) >> GITHUB_ENV" 
+        echo "repo_get_output=$(cat repo_get_output.json) >> GITHUB_OUTPUT" 
 outputs:     
   repo_get_output:
     description: "The repository details"
