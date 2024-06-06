@@ -17,16 +17,6 @@ runs:
   steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-
-    - name: Install dependencies
-      shell: bash
-      run: npm install @octokit/rest
-
     - name: Repo Get API calls"
       id: repo_get_call
       shell: bash
@@ -35,4 +25,19 @@ runs:
         repo_name: ${{ inputs.repo-name }}
         owner_name: ${{ inputs.owner-name }}
       run: |
-        node ${{ github.workspace }}/.github/actions/repo-check-create/create_repo.mjs
+        gh API \
+        "repos/$owner_name/$repo_name" \
+        -H "Accept: application/vnd.github.v3+json" 
+        -H "Authorization: $GH_TOKEN \
+        --include \
+        -X GET \
+        -o repo_get_output.json
+    - name: Set output  
+      shell: bash
+      id: set_output
+      run: echo "::set-output name=repo_get_output::$(cat repo_get_output.json)"
+
+outputs:     
+  repo_get_output:
+    description: "The repository details"
+    value: ${{ steps.set_output.outputs.repo_get_output }}  
