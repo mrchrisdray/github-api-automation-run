@@ -25,6 +25,7 @@ runs:
         repo_name: ${{ inputs.repo-name }}
         owner_name: ${{ inputs.owner-name }}
       run: |
+        set +e
         gh api \
           "repos/$owner_name/$repo_name" \
           -H "Accept: application/vnd.github.v3+json" 
@@ -32,6 +33,11 @@ runs:
           --include \
           -X GET \
           -o repo_get_output.json
+        if [ $? -ne 0 ]; then
+          echo "API call failed, but we're continuing execution."
+          echo "{}" > repo_get_output.json
+        fi
+        set -e
     - name: Set output  
       shell: bash
       id: set_output
