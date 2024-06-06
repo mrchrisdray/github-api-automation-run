@@ -29,22 +29,27 @@ runs:
         gh api \
           "repos/$owner_name/$repo_name" \
           -H "Accept: application/vnd.github.v3+json" 
-          -H "Authorization: $GH_TOKEN" \
+          -H "Authorization: $GH_TOKEN \
           --include \
           -X GET \
           -o repo_get_output.json
         if [ $? -ne 0 ]; then
           echo " API call failed, but we are continuing execution..."
-          echo "{}" > repo_get_output.json
-          echo reposnse_code=404 >> $GITHUB_OUTPUT
-        fi
-        set -e
+          response_status=$(cat repo_get_output.json | jq -r '.status')
+          echo $response_status
+          echo $response_status > response_status.txt
+        fi  
+          
     - name: Set output  
       shell: bash
       id: set_output
-      run: echo "$GITHUB_OUTPUT"
-
+      run: |
+        echo "repo_get_output=$(cat repo_get_output.json) >> GITHUB_OUTPUT"
+        echo "response_status=$(cat response_status.txt) >> GITHUB_ENV" 
 outputs:     
   repo_get_output:
     description: "The repository details"
-    value: ${{ steps.set_output.outputs.repo_get_output }}  
+    value: ${{ steps.set_output.outputs.repo_get_output }} 
+  response_status:
+    description: "The response status"
+    value: ${{ steps.set_output.outputs.response_status }} 
