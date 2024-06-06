@@ -25,26 +25,5 @@ jobs:
         pat-token: ${{ secrets.API_PAT_TOKEN }}
         repo-name: ${{ github.event.inputs.repository-name }}
         owner-name: ${{ github.repository_owner }}
-   outputs:
-      REPO_CHECK_STATUS: ${{ steps.repo-check.outputs.repo_get_output }}
-  # Test job
-  test:
-    needs: repo_test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Run tests
-        run: |
-          # Add your tests here
-          echo "Running tests..."
-          echo "Repo check output: ${{ needs.repo_test.outputs.REPO_CHECK_STATUS }}" 
-
-    # - id: create_repo
-    #   uses: ./.github/actions/create-repo
-    #   with:
-    #     pat-token: ${{ secrets.API_PAT_TOKEN }}
-    #     repo-name: ${{ github.event.inputs.repository-name }}
-    #     owner-name: ${{ github.repository_owner }}
-    #     repo-description: ${{ github.event.inputs.repository_description }}
-    #   if: steps.repo-check.outputs.repo_get_output == '{"response_status":"404"}' 
+        repo-description: ${{ github.event.inputs.repository_description }}
+ 

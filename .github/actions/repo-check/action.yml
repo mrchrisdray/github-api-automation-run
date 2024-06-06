@@ -5,6 +5,10 @@ inputs:
  repo-name:
    description: "Name of the repository to attempt to get"
    required: true
+ repo-description:
+  description: "Description of the repository to create"
+  required: false
+  default: "This is a repo description"  
  owner-name:
    description: "The repository owner"
    required: true
@@ -44,7 +48,25 @@ runs:
       run: |
         echo "repo_get_output=$(cat repo_get_output.json) >> GITHUB_OUTPUT" 
 
-outputs:     
-  repo_get_output:
-    description: "The repository get response status code"
-    value: ${{ steps.set_output.outputs.repo_get_output }} 
+    - name: Test output
+      shell: bash
+      id: test_repo_output
+      run: |
+        echo "Running tests..."
+        echo "Repo check output: ${{ steps.set_output.outputs.repo_get_output }}" 
+
+    # - id: create_repo
+    #   uses: ./.github/actions/create-repo
+    #   with:
+        # token: ${{ inputs.pat-token }}
+        # repo_name: ${{ inputs.repo-name }}
+        # owner_name: ${{ inputs.owner-name }}
+    #     repo_description: ${{inputs.repository-description }}
+    #   if: steps.repo-check.outputs.repo_get_output == '{"response_status":"404"}' 
+
+
+
+    # outputs:     
+#   repo_get_output:
+#     description: "The repository get response status code"
+#     value: ${{ steps.set_output.outputs.repo_get_output }} 

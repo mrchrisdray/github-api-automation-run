@@ -1,0 +1,39 @@
+name: "Creare repository"
+description: "Create a new repository"
+
+inputs:
+  repo_name:
+    description: "Repository name"
+    required: true
+  repo_description:
+    description: "Repository description"
+    required: false
+  repo_private:
+    description: "Repository visibility"
+    required: false
+    default: "false"
+  token:
+    description: "Personal access token"
+    required: true
+
+runs:
+  using: composite 
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Create repository
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        owner_name: ${{ github.repository_owner }}
+        repo_name: ${{ inputs.repo_name }} 
+        repo_desc: ${{ inputs.repo_description }}
+        privite_repo: ${{ inputs.repo_private }}
+      run: |
+        gh api \
+        --method POST \ 
+        -H "Accept: application/vnd.github.v3+json" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        repos repos/$owner/$repo \ 
+        -f "owner=$owner_name" "name="$repo_name" -f "description=$repo_desc" -f "private=$private_repo"
+
