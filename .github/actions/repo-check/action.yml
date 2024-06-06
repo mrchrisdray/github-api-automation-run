@@ -34,14 +34,15 @@ runs:
           -X GET \
           -o repo_get_output.json
         if [ $? -ne 0 ]; then
-          echo "API call failed, but we are continuing execution..."
+          echo " API call failed, but we are continuing execution..."
           echo "{}" > repo_get_output.json
+          echo reposnse_code=404 >> $GITHUB_OUTPUT
         fi
         set -e
     - name: Set output  
       shell: bash
       id: set_output
-      run: echo "::set-output name=repo_get_output::$(cat repo_get_output.json)"
+      run: echo "$GITHUB_OUTPUT"
 
 outputs:     
   repo_get_output:
