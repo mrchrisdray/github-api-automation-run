@@ -30,7 +30,7 @@ jobs:
     #   run: |
     #     echo "::set-output name=REPO_CHECK_STATUS::$(./your-script.sh)"
    outputs:
-      REPO_CHECK_STATUS: ${{ steps.repo-check.outputs.REPO_CHECK_STATUS }}
+      REPO_CHECK_STATUS: ${{ steps.repo-check.outputs.env.REPO_CHECK_STATUS }}
   # Test job
   test:
     needs: repo_test
