@@ -29,17 +29,17 @@ runs:
         gh api \
           "repos/$owner_name/$repo_name" \
           -H "Accept: application/vnd.github.v3+json" 
-          -H "Authorization: $GH_TOKEN" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
           --include \
           -X GET \
           -o repo_get_output.json
         if [ $? -ne 0 ]; then
           echo " API call failed, but we are continuing execution..."
           printf '{"response_status":"$?"}' > repo_get_output.json
-          response_status=$?
+          response_status="$?"
           echo $response_status
         fi  
-          
+        set -e  
     - name: Set output  
       shell: bash
       id: set_output
