@@ -25,6 +25,12 @@ jobs:
         pat-token: ${{ secrets.API_PAT_TOKEN }}
         repo-name: ${{ github.event.inputs.repository-name }}
         owner-name: ${{ github.repository_owner }}
+      # Set output here
+    # - id: set_output
+    #   run: |
+    #     echo "::set-output name=REPO_CHECK_STATUS::$(./your-script.sh)"
+   outputs:
+      REPO_CHECK_STATUS: ${{ steps.repo-check.outputs.REPO_CHECK_STATUS }}
   # Test job
   test:
     needs: repo_test
@@ -36,7 +42,7 @@ jobs:
         run: |
           # Add your tests here
           echo "Running tests..."
-          echo "Repo check output: ${{ github.env.REPO_CHECK_STATUS }}" 
+          echo "Repo check output: ${{ needs.repo_test.outputs.REPO_CHECK_STATUS }}" 
 
     # - id: create_repo
     #   uses: ./.github/actions/create-repo
