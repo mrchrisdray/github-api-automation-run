@@ -11,7 +11,8 @@ on:
         description: "Name of the new repository to be created" 
         required: false
         default: "Creation of new test repo using api calls in GitHub"
- 
+    outputs:
+      repo_get_output: ${{ steps.repo-check.outputs.repo_get_output }} 
 jobs:
   repo_test:
    runs-on: ubuntu-latest
@@ -36,7 +37,7 @@ jobs:
         run: |
           # Add your tests here
           echo "Running tests..."
-          echo "Repo check output: ${{ env.REPO_CHECK_STATUS }}" 
+          echo "Repo check output: ${{ github.action.env.REPO_CHECK_STATUS }}" 
 
     # - id: create_repo
     #   uses: ./.github/actions/create-repo
