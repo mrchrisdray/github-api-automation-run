@@ -16,8 +16,6 @@ jobs:
   repo_test:
    runs-on: ubuntu-latest
    name: "Check Repo Existence" 
-   outputs:
-    repo_get_output: ${{ steps.repo-check.outputs.repo_get_output }}
    steps:
     - name: Run Check out
       uses: actions/checkout@v4
@@ -38,7 +36,7 @@ jobs:
         run: |
           # Add your tests here
           echo "Running tests..."
-          echo "Repo check output: ${{ steps.repo-check.outputs.repo_get_output }}" 
+          echo "Repo check output: ${{ env.REPO_CHECK_OUTPUT }}" 
 
     # - id: create_repo
     #   uses: ./.github/actions/create-repo
