@@ -1,4 +1,4 @@
-name: "Create New Repo"
+name: "Create a new repository"
 
 on:
   workflow_dispatch:
@@ -22,10 +22,9 @@ jobs:
     - id: repo-check
       shell: bash
       env:
-        pat-token: ${{ secrets.API_PAT_TOKEN }}
-        repo-name: ${{ github.event.inputs.repository-name }}
-        owner-name: ${{ github.repository_owner }}
-        repo-description: ${{ github.event.inputs.repository_description }}
+        GH_TOKEN: ${{ secrets.API_PAT_TOKEN }}
+        repo_name: ${{ github.event.inputs.repository-name }}
+        owner_name: ${{ github.repository_owner }}
       run: |
         set +e
         STATUS_CODE=$(curl -o repo_get_output.json -s -w "%{http_code}\n" -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/$owner_name/$repo_name")
@@ -42,7 +41,7 @@ jobs:
         set -e
         echo "repo_get_output=$(cat repo_get_output.json) >> GITHUB_OUTPUT"   
  
-      - name: Test output
+    - name: Test output
       shell: bash
       id: test_repo_output
       run: |
