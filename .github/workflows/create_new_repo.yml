@@ -52,7 +52,7 @@ jobs:
 
       - name: Create New Repository
         id: create-repo
-        uses: ./.github/actions/repos-get
+        uses: ./.github/actions/repos-create
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repo-name: ${{ github.event.inputs.repository-name }}
