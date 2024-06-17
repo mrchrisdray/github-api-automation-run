@@ -24,7 +24,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.API_PAT_TOKEN }}
           repo_name: ${{ github.event.inputs.repository-name }}
-          owner_name: ${{ github.repository_owner }}
+          repo_description: ${{ github.repository_description }}
         name: Check if Repository Exists
         run: |
           set +e
@@ -53,5 +53,5 @@ jobs:
         uses: ./.github/actions/repo-create
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          repo-name: ${{ github.event.inputs.repository-name }}
-          owner-name: ${{ github.repository_owner }}
+          repo_name: ${{ github.event.inputs.repository-name }}
+          owner_name: ${{ github.repository_owner }}

@@ -8,6 +8,7 @@ inputs:
   repo_description:
     description: "Repository description"
     required: false
+    default: "Repository created by GitHub Actions"
   repo_private:
     description: "Repository visibility"
     required: false
