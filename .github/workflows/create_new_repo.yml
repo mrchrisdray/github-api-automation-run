@@ -46,4 +46,4 @@ jobs:
       id: test_repo_outputß
       run: |
         echo "Running tests..."
-        echo "Repo check output: ${{ steps.repo-check.outputs.GITHUB_OUTPUT.repo_get_output }}"
+        echo "Repo check output: ${{ steps.repo-check.outputs.GITHUB_OUTPUT }}"
