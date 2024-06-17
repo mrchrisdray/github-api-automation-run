@@ -40,8 +40,8 @@ jobs:
             exit 1
           fi  
           set -e
-
-          echo "repo_get_output=$(< repo_get_output.json)" >> "$GITHUB_OUTPUT"
+          RESPONSE_STATUS=$(jq -r '.response_status' repo_get_output.json)
+          echo "repo_get_output=$RESPONSE_STATUS" >> "$GITHUB_OUTPUT"
       - name: Test output
         shell: bash
         id: test_repo_output
