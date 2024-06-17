@@ -62,4 +62,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           repo-name: ${{ github.event.inputs.repository-name }}
           owner-name: ${{ github.repository_owner }}  
-        if: steps.repo-check.outputs.repo_get_output == '{"response_status":"404"}'
+    if: steps.repo-check.outputs.repo_get_output == '{"response_status":"404"}'
