@@ -40,9 +40,8 @@ jobs:
             exit 1
           fi  
           set -e
-          
-          echo "checkOutput=$(< repo_get_output.json)"  
-          echo "repo_get_output=$checkOutput" >> "$GITHUB_ENV"
+
+          echo "repo_get_output=$(< repo_get_output.json)" >> "$GITHUB_OUTPUT"
 
       - name: Test output
         shell: bash
