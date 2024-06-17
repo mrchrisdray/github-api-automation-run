@@ -15,7 +15,7 @@ on:
 jobs:
   repo_check_test:
     runs-on: ubuntu-latest
-    name: "Check Repo Existence" 
+    name: "Check Repo Existence and create when not found" 
     steps:
       - name: Run Check out
         uses: actions/checkout@v4
@@ -50,7 +50,7 @@ jobs:
           echo "Repo check output: ${{ steps.repo-check.outputs.repo_get_output }}"
       - name: Create repository
         if: steps.repo-check.outputs.repo_get_output == '404'
-        uses: ./.github/actions/repos-create
+        uses: ./.github/actions/repo-create
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repo-name: ${{ github.event.inputs.repository-name }}
