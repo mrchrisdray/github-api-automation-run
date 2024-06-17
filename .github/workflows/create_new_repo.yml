@@ -52,9 +52,9 @@ jobs:
 
       - name: Create New Repository
         id: create-repo
-        - uses: ./.github/actions/repos-get
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            repo-name: ${{ github.event.inputs.repository-name }}
-            owner-name: ${{ github.repository_owner }}  
+        uses: ./.github/actions/repos-get
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repo-name: ${{ github.event.inputs.repository-name }}
+          owner-name: ${{ github.repository_owner }}  
         if: steps.repo-check.outputs.repo_get_output == '{"response_status":"404"}'
