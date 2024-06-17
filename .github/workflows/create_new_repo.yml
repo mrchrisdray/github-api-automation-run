@@ -42,7 +42,7 @@ jobs:
           set -e
           
           echo "checkOutput=$(< repo_get_output.json)"  
-          echo "repo_get_output=$checkOutput" >> $GITHUB_ENV
+          echo "repo_get_output=$checkOutput" >> "$GITHUB_ENV"
 
       - name: Test output
         shell: bash
@@ -52,7 +52,7 @@ jobs:
           echo "Repo check output: ${{ steps.repo-check.outputs.repo_get_output }}"
   repo_create:
     runs-on: ubuntu-latest
-    name: "Check Repo Existence" 
+    name: "Create Repo if one does not exist" 
     steps:
       - name: Run Check out
         uses: actions/checkout@v4
