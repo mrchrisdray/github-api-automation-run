@@ -12,7 +12,7 @@ on:
         required: false
         default: "Creation of new test repo using api calls in GitHub"
 # env:
-#   APP_ID: ${{ secrets.APP_ID }}
+#   app_id: ${{ secrets.APP_ID }}
 #   private_key: ${{ secrets.APP_DEMO_KEY }}
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: ${{ secrets.APP_ID }}
+          app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_DEMO_KEY }}
 
       - name: Run Check out
