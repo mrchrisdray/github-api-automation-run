@@ -11,9 +11,9 @@ on:
         description: "Name of the new repository to be created" 
         required: false
         default: "Creation of new test repo using api calls in GitHub"
-env:
-  APP_ID: ${{ secrets.APP_ID }}
-  private_key: ${{ secrets.APP_DEMO_KEY }}
+# env:
+#   APP_ID: ${{ secrets.APP_ID }}
+#   private_key: ${{ secrets.APP_DEMO_KEY }}
 
 jobs:
   repo_check_test:
@@ -23,8 +23,8 @@ jobs:
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: ${{ env.APP_ID }}
-          private-key: ${{ env.APP_DEMO_KEY }}
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_DEMO_KEY }}
 
       - name: Run Check out
         uses: actions/checkout@v4
