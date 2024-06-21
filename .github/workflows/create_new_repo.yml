@@ -11,13 +11,13 @@ on:
         description: "Name of the new repository to be created" 
         required: false
         default: "Creation of new test repo using api calls in GitHub"
-# env:
-#   app_id: ${{ secrets.APP_ID }}
-#   private_key: ${{ secrets.APP_DEMO_KEY }}
 
 jobs:
   repo_check_test:
     runs-on: ubuntu-latest
+    envrionment:
+      name: "AppLoginAPIDemo"
+      GITHUB_OUTPUT: ${{ github.workspace }}/output.txt
     name: "Check Repo Existence and create when not found" 
     steps:
       - uses: actions/create-github-app-token@v1
@@ -25,6 +25,7 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_DEMO_KEY }}
+          owner: ${{ github.repository_owner }}
 
       - name: Run Check out
         uses: actions/checkout@v4
