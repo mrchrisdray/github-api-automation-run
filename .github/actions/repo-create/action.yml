@@ -32,8 +32,8 @@ runs:
         url_repo: ${{ github.GITHUB_SERVER_URL }}${{ github.REPOSITORY }}
       run: |
         gh api \
-        --method POST \ 
-        -H "Accept: application/vnd.github.v3+json" \
-        -H "X-GitHub-Api-Version: 2022-11-28" \
-        user/repos \ 
-        -f "name="$repo_name" -f "description=$repo_desc" -f "homepage=$url_repo" -F "private=$private_repo -F "is_template=false""
+          --method POST \ 
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          user/repos \ 
+          -f "name="$repo_name" -f "description=$repo_desc" -f "homepage=$url_repo" -F "private=$private_repo -F "is_template=false""

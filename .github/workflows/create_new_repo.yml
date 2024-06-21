@@ -33,8 +33,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          repo_name: ${{ github.event.inputs.repository-name }}
-          repo_description: ${{ github.repository_description }}
+          repo_name: ${{ github.event.inputs.repository-name }} 
         name: Check if Repository Exists
         run: |
           set +e
@@ -59,7 +58,7 @@ jobs:
           echo "Running tests..."
           echo "Repo check output: ${{ steps.repo-check.outputs.repo_get_output }}"
       - name: Create repository
-        if: steps.repo-check.outputs.repo_get_output == '404'
+        if: steps.repo-check.outputs.repo_get_output == 404
         uses: ./.github/actions/repo-create
         with:
           token: ${{ steps.app-token.outputs.token }}
