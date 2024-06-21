@@ -29,7 +29,7 @@ runs:
         repo_name: ${{ inputs.repo_name }} 
         repo_desc: ${{ inputs.repo_description }}
         privite_repo: ${{ inputs.repo_private }}
-        url_repo: ${{ github.GITHUB_SERVER_URL }}${{ github.REPOSITORY }}
+        url_repo: ${{ github.GITHUB_SERVER_URL }}
       run: |
         gh api \
           --method POST \ 
