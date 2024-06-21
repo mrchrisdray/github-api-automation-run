@@ -15,9 +15,9 @@ on:
 jobs:
   repo_check_test:
     runs-on: ubuntu-latest
-    envrionment:
+    environment:
       name: "AppLoginAPIDemo"
-      GITHUB_OUTPUT: ${{ github.workspace }}/output.txt
+
     name: "Check Repo Existence and create when not found" 
     steps:
       - uses: actions/create-github-app-token@v1
