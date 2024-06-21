@@ -36,4 +36,4 @@ runs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           user/repos \ 
-          -f "name="$repo_name" -f "description=$repo_desc" -f "homepage=$url_repo" -F "private=$private_repo -F "is_template=false""
+          -f "name="$repo_name" -f "description=$repo_desc" -f "homepage=https://github.com/$url_repo" -F "private=$private_repo -F "is_template=false""
