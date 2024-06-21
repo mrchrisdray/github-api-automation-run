@@ -29,11 +29,10 @@ runs:
         repo_name: ${{ inputs.repo_name }} 
         repo_desc: ${{ inputs.repo_description }}
         privite_repo: ${{ inputs.repo_private }}
-        url_repo: ${{ github.GITHUB_SERVER_URL }}
       run: |
         gh api \
           --method POST \ 
           -H "Accept: application/vnd.github.v3+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
           user/repos \ 
-          -f "name="$repo_name" -f "description=$repo_desc" -f "homepage=https://github.com/$url_repo" -F "private=$private_repo -F "is_template=false""
+          -f "name="$repo_name" -f "description=$repo_desc" -f "homepage=https://github.com/mrchrisdray" -F "private=$private_repo -F "is_template=false""
